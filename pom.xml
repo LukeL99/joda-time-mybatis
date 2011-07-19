@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>joda-time</groupId>
+	<artifactId>joda-time-mybatis</artifactId>
+	<version>1.0</version>
+	<name>mybatis integration for joda time framework</name>
+	<description>This stores all DateTimes in the database in UTC time.</description>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>crimson</id>
+			<url>http://192.168.1.12:8081/nexus/content/repositories/crimson</url>
+		</snapshotRepository>
+		<repository>
+			<id>crimson</id>
+			<url>http://192.168.1.12:8081/nexus/content/repositories/crimson</url>
+		</repository>
+	</distributionManagement>
+	<dependencies>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>1.6.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.0.5</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>
