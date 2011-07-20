@@ -16,18 +16,34 @@ public class LocalDateTypeHandler implements TypeHandler
 
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
-        LocalDate date = (LocalDate)parameter;
-        ps.setDate(i, new Date(date.toDateTimeAtStartOfDay(DateTimeZone.UTC).toDate().getTime()));
+        LocalDate date = (LocalDate) parameter;
+        ps.setDate(i, new Date(date.toDateTimeAtStartOfDay().toDate().getTime()));
     }
 
     public Object getResult(ResultSet rs, String columnName) throws SQLException
     {
-        return new LocalDate(rs.getDate(columnName).getTime(), DateTimeZone.UTC);
+        Date date = rs.getDate(columnName);
+        if (date != null)
+        {
+            return new LocalDate(date.getTime(), DateTimeZone.UTC);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public Object getResult(CallableStatement cs, int columnIndex) throws SQLException
     {
-        return new LocalDate(cs.getDate(columnIndex).getTime(), DateTimeZone.UTC);
+        Date date = cs.getDate(columnIndex);
+        if (date != null)
+        {
+            return new LocalDate(date.getTime(), DateTimeZone.UTC);
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

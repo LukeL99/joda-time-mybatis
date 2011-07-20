@@ -9,7 +9,6 @@ import java.sql.Time;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.LocalTime;
 
 public class LocalTimeTypeHandler implements TypeHandler
@@ -17,19 +16,37 @@ public class LocalTimeTypeHandler implements TypeHandler
 
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
-        LocalTime time = (LocalTime)parameter;
-        DateTime datetime = new DateTime(1970, 1, 1, time.getHourOfDay(), time.getMinuteOfHour(), time.getSecondOfMinute(), 0, DateTimeZone.UTC);
+        LocalTime time = (LocalTime) parameter;
+        DateTime datetime = new DateTime(1970, 1, 1, time.getHourOfDay(), time.getMinuteOfHour(),
+                time.getSecondOfMinute(), 0);
         ps.setTime(i, new Time(datetime.toDate().getTime()));
     }
 
     public Object getResult(ResultSet rs, String columnName) throws SQLException
     {
-        return new LocalTime(rs.getTime(columnName).getTime());
+        Time time = rs.getTime(columnName);
+        if (time != null)
+        {
+            return new LocalTime(time.getTime());
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
     public Object getResult(CallableStatement cs, int columnIndex) throws SQLException
     {
-        return new LocalTime(cs.getTime(columnIndex).getTime());
+        Time time = cs.getTime(columnIndex);
+        if(time != null)
+        {
+            return new LocalTime(time.getTime());    
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }
