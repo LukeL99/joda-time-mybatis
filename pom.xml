@@ -3,17 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>joda-time</groupId>
 	<artifactId>joda-time-mybatis</artifactId>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>mybatis integration for joda time framework</name>
 	<description>This stores all DateTimes in the database in UTC time.</description>
 	<distributionManagement>
 		<snapshotRepository>
-			<id>crimson</id>
-			<url>http://192.168.1.12:8081/nexus/content/repositories/crimson</url>
+			<id>nexus</id>
+			<url>http://192.168.1.12:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<repository>
-			<id>crimson</id>
-			<url>http://192.168.1.12:8081/nexus/content/repositories/crimson</url>
+			<id>nexus</id>
+			<url>http://192.168.1.12:8081/nexus/content/repositories/releases/</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
