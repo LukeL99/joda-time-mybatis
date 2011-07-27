@@ -16,10 +16,18 @@ public class LocalTimeTypeHandler implements TypeHandler
 
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
+
         LocalTime time = (LocalTime) parameter;
-        DateTime datetime = new DateTime(1970, 1, 1, time.getHourOfDay(), time.getMinuteOfHour(),
-                time.getSecondOfMinute(), 0);
-        ps.setTime(i, new Time(datetime.toDate().getTime()));
+        if (time != null)
+        {
+            DateTime datetime = new DateTime(1970, 1, 1, time.getHourOfDay(), time.getMinuteOfHour(),
+                    time.getSecondOfMinute(), 0);
+            ps.setTime(i, new Time(datetime.toDate().getTime()));
+        }
+        else
+        {
+            ps.setTime(i, null);
+        }
     }
 
     public Object getResult(ResultSet rs, String columnName) throws SQLException
@@ -39,9 +47,9 @@ public class LocalTimeTypeHandler implements TypeHandler
     public Object getResult(CallableStatement cs, int columnIndex) throws SQLException
     {
         Time time = cs.getTime(columnIndex);
-        if(time != null)
+        if (time != null)
         {
-            return new LocalTime(time.getTime());    
+            return new LocalTime(time.getTime());
         }
         else
         {
