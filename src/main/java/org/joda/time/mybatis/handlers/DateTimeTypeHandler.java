@@ -16,7 +16,15 @@ public class DateTimeTypeHandler implements TypeHandler
 
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
-        ps.setTimestamp(i, new Timestamp(((DateTime) parameter).getMillis()));
+       
+        if (parameter != null)
+        {
+            ps.setTimestamp(i, new Timestamp(((DateTime) parameter).getMillis()));
+        }
+        else
+        {
+            ps.setTimestamp(i, null);
+        }
     }
 
     public Object getResult(ResultSet rs, String columnName) throws SQLException
@@ -24,7 +32,7 @@ public class DateTimeTypeHandler implements TypeHandler
         Timestamp ts = rs.getTimestamp(columnName);
         if (ts != null)
         {
-             return new DateTime(ts.getTime(), DateTimeZone.UTC);
+            return new DateTime(ts.getTime(), DateTimeZone.UTC);
         }
         else
         {
@@ -37,7 +45,7 @@ public class DateTimeTypeHandler implements TypeHandler
         Timestamp ts = cs.getTimestamp(columnIndex);
         if (ts != null)
         {
-             return new DateTime(ts.getTime(), DateTimeZone.UTC);
+            return new DateTime(ts.getTime(), DateTimeZone.UTC);
         }
         else
         {

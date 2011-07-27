@@ -16,8 +16,16 @@ public class LocalDateTypeHandler implements TypeHandler
 
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
+
         LocalDate date = (LocalDate) parameter;
-        ps.setDate(i, new Date(date.toDateTimeAtStartOfDay().toDate().getTime()));
+        if (date != null)
+        {
+            ps.setDate(i, new Date(date.toDateTimeAtStartOfDay().toDate().getTime()));
+        }
+        else
+        {
+            ps.setDate(i, null);
+        }
     }
 
     public Object getResult(ResultSet rs, String columnName) throws SQLException
