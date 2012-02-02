@@ -1,16 +1,14 @@
 package org.joda.time.mybatis.handlers;
 
-import java.sql.CallableStatement;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedTypes;
 import org.apache.ibatis.type.TypeHandler;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
+import java.sql.*;
+
+@MappedTypes(LocalDate.class)
 public class LocalDateTypeHandler implements TypeHandler
 {
 
