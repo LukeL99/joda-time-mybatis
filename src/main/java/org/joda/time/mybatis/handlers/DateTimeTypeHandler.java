@@ -26,9 +26,11 @@ import java.sql.*;
 public class DateTimeTypeHandler implements TypeHandler
 {
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#setParameter(java.sql.PreparedStatement, int, java.lang.Object, org.apache.ibatis.type.JdbcType)
+     */
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
-       
         if (parameter != null)
         {
             ps.setTimestamp(i, new Timestamp(((DateTime) parameter).getMillis()));
@@ -39,6 +41,9 @@ public class DateTimeTypeHandler implements TypeHandler
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#getResult(java.sql.ResultSet, java.lang.String)
+     */
     public Object getResult(ResultSet rs, String columnName) throws SQLException
     {
         Timestamp ts = rs.getTimestamp(columnName);
@@ -52,6 +57,9 @@ public class DateTimeTypeHandler implements TypeHandler
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#getResult(java.sql.CallableStatement, int)
+     */
     public Object getResult(CallableStatement cs, int columnIndex) throws SQLException
     {
         Timestamp ts = cs.getTimestamp(columnIndex);
