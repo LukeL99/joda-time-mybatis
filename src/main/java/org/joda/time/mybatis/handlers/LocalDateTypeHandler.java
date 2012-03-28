@@ -26,6 +26,9 @@ import java.sql.*;
 public class LocalDateTypeHandler implements TypeHandler
 {
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#setParameter(java.sql.PreparedStatement, int, java.lang.Object, org.apache.ibatis.type.JdbcType)
+     */
     public void setParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException
     {
 
@@ -40,6 +43,9 @@ public class LocalDateTypeHandler implements TypeHandler
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#getResult(java.sql.ResultSet, java.lang.String)
+     */
     public Object getResult(ResultSet rs, String columnName) throws SQLException
     {
         Date date = rs.getDate(columnName);
@@ -53,6 +59,9 @@ public class LocalDateTypeHandler implements TypeHandler
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.apache.ibatis.type.TypeHandler#getResult(java.sql.CallableStatement, int)
+     */
     public Object getResult(CallableStatement cs, int columnIndex) throws SQLException
     {
         Date date = cs.getDate(columnIndex);
