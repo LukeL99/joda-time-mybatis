@@ -1,3 +1,7 @@
+## Note
+
+* Looking for a new maintainer for this project. I no longer use Joda or Mybatis at my job, so my drive to update this project is low. Contact me if interested.
+
 ## Comments
 
 * Your mileage may vary. Working with time zones can yield strange results
